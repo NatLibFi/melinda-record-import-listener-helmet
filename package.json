@@ -1,17 +1,17 @@
 {
-	"name": "@natlibfi/melinda-record-import-poller-helmet",
+	"name": "@natlibfi/melinda-record-import-harvester-helmet",
 	"description": "Helmet record poller for the Melinda record batch import system ",
 	"author": {
 		"name": "The National Library of Finland"
 	},
 	"keywords": [],
-	"homepage": "https://github.com/natlibfi/melinda-record-import-poller-helmet",
+	"homepage": "https://github.com/natlibfi/melinda-record-import-harvester-helmet",
 	"bugs": {
-		"url": "https://github.com/natlibfi/melinda-record-import-poller-helmet/issues"
+		"url": "https://github.com/natlibfi/melinda-record-import-harvester-helmet/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:natlibfi/melinda-record-import-poller-helmet.git"
+		"url": "git@github.com:natlibfi/melinda-record-import-harvester-helmet.git"
 	},
 	"license": "AGPL-3.0+",
 	"version": "1.0.0",
