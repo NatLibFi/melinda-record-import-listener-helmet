@@ -2,7 +2,7 @@
 *
 * @licstart  The following is the entire license notice for the JavaScript code in this file.
 *
-* Helmet record poller for the Melinda record batch import system
+* Helmet record harvester for the Melinda record batch import system
 *
 * Copyright (C) 2018 University Of Helsinki (The National Library Of Finland)
 *

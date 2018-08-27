@@ -1,6 +1,6 @@
 {
 	"name": "@natlibfi/melinda-record-import-harvester-helmet",
-	"description": "Helmet record poller for the Melinda record batch import system ",
+	"description": "Helmet record harvester for the Melinda record batch import system ",
 	"author": {
 		"name": "The National Library of Finland"
 	},
