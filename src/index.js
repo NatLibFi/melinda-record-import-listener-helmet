@@ -52,6 +52,7 @@ async function run() {
 	]);
 
 	const RECORDS_FETCH_LIMIT = 1000;
+	const POLL_INTERVAL = process.env.POLL_INTERVAL || 1800000; // Default is 30 minutes
 	const CHANGE_TIMESTAMP_FILE = process.env.POLL_CHANGE_TIMESTAMP_FILE || path.resolve(__dirname, '..', '.poll-change-timestamp.json');
 	const setTimeoutPromise = nodeUtils.promisify(setTimeout);
 
@@ -81,7 +82,8 @@ async function run() {
 			await sendRecords(records);
 		}
 
-		await setTimeoutPromise(process.env.POLL_INTERVAL || 1800000); // Default is 30 minutes
+		logger.log('debug', `Waiting ${POLL_INTERVAL / 1000} seconds before polling again`);
+		await setTimeoutPromise(POLL_INTERVAL);
 
 		writePollChangeTimestamp(timeBeforeFetching);
 
@@ -151,17 +153,16 @@ async function run() {
 				const result = await response.json();
 
 				logger.log('debug', `Retrieved ${result.entries.length} records`);
-				result.entries = result.entries.filter(filterRecords);
-				logger.log('debug', `${result.entries.length} records after filtering`);
 
 				if (result.entries.length === RECORDS_FETCH_LIMIT) {
 					return fetchRecords(offset + RECORDS_FETCH_LIMIT, records.concat(result.entries), timeBeforeFetching);
 				}
+
 				return {records: records.concat(result.entries), timeBeforeFetching};
 			}
 
 			if (response.status === HttpStatusCodes.NOT_FOUND) {
-				logger.log('debug', `No records found`);
+				logger.log('debug', 'No records found');
 				return {records, timeBeforeFetching};
 			}
 
@@ -170,16 +171,12 @@ async function run() {
 			function generateTimespan() {
 				return `[${pollChangeTime.format()},]`;
 			}
-
-			function filterRecords(record) {
-				const leader = record.varFields.find(f => f.fieldTag === '_');
-				return leader && !['c', 'd', 'i'].includes(leader.content[6]);
-			}
 		}
 
-		async function sendRecords(records) {
-			// TODO: Use Record import API to create Blobs
-			//logger.log('info', `Created new blob x containing ${records.length} records`);
+		async function sendRecords(records) { // eslint-disable-line require-await
+			fs.writeFileSync('fetched.json', JSON.stringify(records, undefined, 2));
+			// Use Record import API to create Blobs
+			logger.log('info', `Created new blob x containing ${records.length} records`);
 		}
 	}
 }
