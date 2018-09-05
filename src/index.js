@@ -151,6 +151,8 @@ async function run() {
 				const result = await response.json();
 
 				logger.log('debug', `Retrieved ${result.entries.length} records`);
+				result.entries = result.entries.filter(filterRecords);
+				logger.log('debug', `${result.entries.length} records after filtering`);
 
 				if (result.entries.length === RECORDS_FETCH_LIMIT) {
 					return fetchRecords(offset + RECORDS_FETCH_LIMIT, records.concat(result.entries), timeBeforeFetching);
@@ -167,6 +169,11 @@ async function run() {
 
 			function generateTimespan() {
 				return `[${pollChangeTime.format()},]`;
+			}
+
+			function filterRecords(record) {
+				const leader = record.varFields.find(f => f.fieldTag === '_');
+				return leader && !['c', 'd', 'i'].includes(leader.content[6]);
 			}
 		}
 
