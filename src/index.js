@@ -26,6 +26,8 @@
 *
 */
 
+/* eslint-disable no-unused-vars, require-await */
+
 'use strict';
 
 import fs from 'fs';
@@ -36,6 +38,31 @@ import fetch from 'node-fetch';
 import HttpStatusCodes from 'http-status-codes';
 import nodeUtils from 'util';
 import {CommonUtils as Utils} from '@natlibfi/melinda-record-import-commons';
+
+const MATERIAL_TYPES_DROP_PATTERN = new RegExp(`[${[
+	'2',
+	'3',
+	'4',
+	'6',
+	'7',
+	'9',
+	'a',
+	'b',
+	'd',
+	'e',
+	'f',
+	'g',
+	'h',
+	'j',
+	'k',
+	'r',
+	's',
+	't',
+	'v',
+	'x',
+	'y',
+	'z'
+].join('')}]`);
 
 run();
 
@@ -135,7 +162,7 @@ async function run() {
 				offset,
 				limit: RECORDS_FETCH_LIMIT,
 				deleted: false,
-				fields: 'id,fixedFields,varFields',
+				fields: 'id,materialType,fixedFields,varFields',
 				createdDate: generateTimespan()
 			});
 
@@ -151,10 +178,13 @@ async function run() {
 
 			if (response.status === HttpStatusCodes.OK) {
 				const result = await response.json();
+				const originalLength = result.entries.length;
+
+				result.entries = result.entries.filter(filterRecords);
 
 				logger.log('debug', `Retrieved ${result.entries.length} records`);
 
-				if (result.entries.length === RECORDS_FETCH_LIMIT) {
+				if (originalLength === RECORDS_FETCH_LIMIT) {
 					return fetchRecords(offset + RECORDS_FETCH_LIMIT, records.concat(result.entries), timeBeforeFetching);
 				}
 
@@ -170,6 +200,30 @@ async function run() {
 
 			function generateTimespan() {
 				return `[${pollChangeTime.format()},]`;
+			}
+		}
+
+		function filterRecords(record) {
+			const leader = record.varFields.find(f => f.fieldTag === '_');
+
+			if (leader && !['c', 'd', 'j'].includes(leader.content)) {
+				if (record.varFields.some(check09)) {
+					return false;
+				}
+
+				const f007 = record.varFields.find(f => f.marcTag === '007');
+
+				if (!f007 && MATERIAL_TYPES_DROP_PATTERN.test(record.materialType.code)) {
+					return false;
+				}
+
+				return true;
+			}
+
+			function check09(field) {
+				return /^09[12345]$/.test(field.marcTag) && field.subfields.find(sf => {
+					return /^78/.test(sf.content);
+				});
 			}
 		}
 
