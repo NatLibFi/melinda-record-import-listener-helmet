@@ -39,31 +39,6 @@ import HttpStatusCodes from 'http-status-codes';
 import nodeUtils from 'util';
 import {CommonUtils as Utils} from '@natlibfi/melinda-record-import-commons';
 
-const MATERIAL_TYPES_DROP_PATTERN = new RegExp(`[${[
-	'2',
-	'3',
-	'4',
-	'6',
-	'7',
-	'9',
-	'a',
-	'b',
-	'd',
-	'e',
-	'f',
-	'g',
-	'h',
-	'j',
-	'k',
-	'r',
-	's',
-	't',
-	'v',
-	'x',
-	'y',
-	'z'
-].join('')}]`);
-
 run();
 
 async function run() {
@@ -162,7 +137,7 @@ async function run() {
 				offset,
 				limit: RECORDS_FETCH_LIMIT,
 				deleted: false,
-				fields: 'id,materialType,fixedFields,varFields',
+				fields: 'id,materialType,varFields',
 				createdDate: generateTimespan()
 			});
 
@@ -204,27 +179,18 @@ async function run() {
 		}
 
 		function filterRecords(record) {
-			const leader = record.varFields.find(f => f.fieldTag === '_');
+			const materialType = record.materialType.code.trim();
 
-			if (leader && !['c', 'd', 'j'].includes(leader.content)) {
-				if (record.varFields.some(check09)) {
-					return false;
-				}
-
-				const f007 = record.varFields.find(f => f.marcTag === '007');
-
-				if (!f007 && MATERIAL_TYPES_DROP_PATTERN.test(record.materialType.code)) {
-					return false;
-				}
-
-				return true;
+			if (['q', '7'].includes(materialType)) {
+				return false;
 			}
 
-			function check09(field) {
-				return /^09[12345]$/.test(field.marcTag) && field.subfields.find(sf => {
-					return /^78/.test(sf.content);
-				});
+			if (materialType === '3') {
+				const leader = record.varFields.find(f => f.fieldTag === '_');				
+				return leader.content[6] !== 'j';
 			}
+
+			return true;
 		}
 
 		async function sendRecords(records) { // eslint-disable-line require-await
