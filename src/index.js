@@ -179,14 +179,31 @@ async function run() {
 		}
 
 		function filterRecords(record) {
+			const leader = record.varFields.find(f => f.fieldTag === '_');
 			const materialType = record.materialType.code.trim();
+
+			if (leader.content[7] === 'm') {
+				const f655 = record.varFields.find(f => f.fieldTag === '655');
+
+				if (f655) {
+					const a = f655.subfields.find(sf => sf.tag === 'a');
+
+					if (a && ['aikakauslehdet', 'sanomalehdet'].includes(a.content)) {
+						return false;
+					}
+				}
+			}
+
+			// Prepublication records
+			if (leader.content[17] === '8') {
+				return false;
+			}
 
 			if (['q', '7'].includes(materialType)) {
 				return false;
 			}
 
 			if (materialType === '3') {
-				const leader = record.varFields.find(f => f.fieldTag === '_');				
 				return leader.content[6] !== 'j';
 			}
 
