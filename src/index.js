@@ -188,7 +188,11 @@ async function run() {
 				if (f655) {
 					const a = f655.subfields.find(sf => sf.tag === 'a');
 
-					if (a && ['aikakauslehdet', 'sanomalehdet'].includes(a.content)) {
+					if (a && [
+						'kartastot',
+						'aikakauslehdet',
+						'sanomalehdet'
+					].includes(a.content)) {
 						return false;
 					}
 				}
