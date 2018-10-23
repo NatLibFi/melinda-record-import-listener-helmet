@@ -56,6 +56,7 @@ async function run() {
 	const RECORDS_FETCH_LIMIT = 1000;
 	const POLL_INTERVAL = process.env.POLL_INTERVAL || 1800000; // Default is 30 minutes
 	const CHANGE_TIMESTAMP_FILE = process.env.POLL_CHANGE_TIMESTAMP_FILE || path.resolve(__dirname, '..', '.poll-change-timestamp.json');
+	const firstAllowedCreationTime = moment('2018-01-01T00:00:00');
 	const setTimeoutPromise = nodeUtils.promisify(setTimeout);
 
 	const logger = Utils.createLogger();
@@ -68,7 +69,7 @@ async function run() {
 		process.exit();
 	} catch (err) {
 		stopHealthCheckService();
-		logger.error(err);
+		logger.error(err.stack);
 		process.exit(-1);
 	}
 
@@ -76,9 +77,11 @@ async function run() {
 		pollChangeTime = pollChangeTime || getPollChangeTime();
 		authorizationToken = await validateAuthorizationToken(authorizationToken); // eslint-disable-line require-atomic-updates
 
-		logger.log('debug', `Fetching records created after ${pollChangeTime.format()}`);
+		logger.log('debug', `Fetching records updated after ${pollChangeTime.format()}`);
 
-		const {timeBeforeFetching, records} = await fetchRecords();
+		const {timeBeforeFetching, numberOfRecordsFound, records} = await fetchRecords();
+
+		logger.log('info', `${records.length}/${numberOfRecordsFound} records retrieved passed the filter`);
 
 		if (records.length > 0) {
 			await sendRecords(records);
@@ -131,21 +134,25 @@ async function run() {
 			}
 		}
 
-		async function fetchRecords(offset = 0, records = [], timeBeforeFetching) {
+		async function fetchRecords({offset, records, numberOfRecordsFound, timeBeforeFetching}={}) {
+			offset = offset === undefined ? 0 : offset;
+			records = records || [];
+			numberOfRecordsFound = numberOfRecordsFound === undefined ? 0 : numberOfRecordsFound;
+			timeBeforeFetching = records.length > 0 ? timeBeforeFetching : moment();
+
 			const url = new URL(`${process.env.HELMET_API_URL}/bibs`);
 			const parameters = new URLSearchParams({
 				offset,
 				limit: RECORDS_FETCH_LIMIT,
 				deleted: false,
-				fields: 'id,materialType,varFields',
-				createdDate: generateTimespan()
+				fields: 'id,materialType,varFields,createdDate',
+				updatedDate: generateTimespan(timeBeforeFetching)
 			});
 
 			url.search = parameters;
 
 			logger.log('debug', url.toString());
 
-			timeBeforeFetching = records.length > 0 ? timeBeforeFetching : moment();
 			const response = await fetch(url.toString(), {headers: {
 				Authorization: `Bearer ${authorizationToken}`,
 				Accept: 'application/json'
@@ -155,15 +162,21 @@ async function run() {
 				const result = await response.json();
 				const originalLength = result.entries.length;
 
+				numberOfRecordsFound += originalLength;
+
 				result.entries = result.entries.filter(filterRecords);
 
 				logger.log('debug', `Retrieved ${result.entries.length} records`);
 
 				if (originalLength === RECORDS_FETCH_LIMIT) {
-					return fetchRecords(offset + RECORDS_FETCH_LIMIT, records.concat(result.entries), timeBeforeFetching);
+					return fetchRecords({
+						offset: offset + RECORDS_FETCH_LIMIT,
+						records: records.concat(result.entries),
+						numberOfRecordsFound, timeBeforeFetching
+					});
 				}
 
-				return {records: records.concat(result.entries), timeBeforeFetching};
+				return {records: records.concat(result.entries), timeBeforeFetching, numberOfRecordsFound};
 			}
 
 			if (response.status === HttpStatusCodes.NOT_FOUND) {
@@ -173,14 +186,22 @@ async function run() {
 
 			throw new Error(`Received HTTP ${response.status} ${response.statusText}`);
 
-			function generateTimespan() {
-				return `[${pollChangeTime.format()},]`;
+			function generateTimespan(endTime) {
+				return `[${pollChangeTime.format()},${endTime.format()}]`;
 			}
 		}
 
 		function filterRecords(record) {
 			const leader = record.varFields.find(f => f.fieldTag === '_');
 			const materialType = record.materialType.code.trim();
+
+			if (moment(record.createdDate).isBefore(firstAllowedCreationTime)) {
+				return false;
+			}
+
+			if (!leader) {
+				return false;
+			}
 
 			if (leader.content[7] === 'm') {
 				const f655 = record.varFields.find(f => f.fieldTag === '655');
@@ -207,11 +228,7 @@ async function run() {
 				return false;
 			}
 
-			if (materialType === '3') {
-				return leader.content[6] !== 'j';
-			}
-
-			return true;
+			return leader.content[6] !== 'j';
 		}
 
 		async function sendRecords(records) { // eslint-disable-line require-await
