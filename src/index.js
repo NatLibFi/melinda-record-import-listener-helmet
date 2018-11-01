@@ -56,7 +56,7 @@ async function run() {
 	const RECORDS_FETCH_LIMIT = 1000;
 	const POLL_INTERVAL = process.env.POLL_INTERVAL || 1800000; // Default is 30 minutes
 	const CHANGE_TIMESTAMP_FILE = process.env.POLL_CHANGE_TIMESTAMP_FILE || path.resolve(__dirname, '..', '.poll-change-timestamp.json');
-	const firstAllowedCreationTime = moment('2018-01-01T00:00:00');
+	const earliestCatalogTime = process.env.EARLIEST_CATALOG_TIME ? moment(process.env.EARLIEST_CATALOG_TIME) : undefined;
 	const setTimeoutPromise = nodeUtils.promisify(setTimeout);
 
 	const logger = Utils.createLogger();
@@ -134,10 +134,7 @@ async function run() {
 			}
 		}
 
-		async function fetchRecords({offset, records, numberOfRecordsFound, timeBeforeFetching}={}) {
-			offset = offset === undefined ? 0 : offset;
-			records = records || [];
-			numberOfRecordsFound = numberOfRecordsFound === undefined ? 0 : numberOfRecordsFound;
+		async function fetchRecords({offset = 0, records = [], numberOfRecordsFound = 0, timeBeforeFetching}={}) {			
 			timeBeforeFetching = records.length > 0 ? timeBeforeFetching : moment();
 
 			const url = new URL(`${process.env.HELMET_API_URL}/bibs`);
@@ -145,7 +142,7 @@ async function run() {
 				offset,
 				limit: RECORDS_FETCH_LIMIT,
 				deleted: false,
-				fields: 'id,materialType,varFields,createdDate',
+				fields: 'id,materialType,varFields,catalogDate',
 				updatedDate: generateTimespan(timeBeforeFetching)
 			});
 
@@ -181,7 +178,7 @@ async function run() {
 
 			if (response.status === HttpStatusCodes.NOT_FOUND) {
 				logger.log('debug', 'No records found');
-				return {records, timeBeforeFetching};
+				return {records, timeBeforeFetching, numberOfRecordsFound};
 			}
 
 			throw new Error(`Received HTTP ${response.status} ${response.statusText}`);
@@ -195,7 +192,7 @@ async function run() {
 			const leader = record.varFields.find(f => f.fieldTag === '_');
 			const materialType = record.materialType.code.trim();
 
-			if (moment(record.createdDate).isBefore(firstAllowedCreationTime)) {
+			if (earliestCatalogTime && moment(record.catalogDate).isBefore(earliestCatalogTime)) {
 				return false;
 			}
 
