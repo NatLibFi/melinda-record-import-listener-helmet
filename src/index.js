@@ -192,6 +192,10 @@ async function run() {
 			const leader = record.varFields.find(f => f.fieldTag === '_');
 			const materialType = record.materialType.code.trim();
 
+			if (!record.catalogDate || !moment(record.catalogDate).isValid()) {				
+				return false;
+			}
+
 			if (earliestCatalogTime && moment(record.catalogDate).isBefore(earliestCatalogTime)) {
 				return false;
 			}
@@ -217,7 +221,12 @@ async function run() {
 			}
 
 			// Prepublication records
-			if (leader.content[17] === '8') {
+/*			if (leader.content[17] === '8') {
+				return false;
+			}
+*/
+
+			if (leader.content[17] !== '4') {
 				return false;
 			}
 
@@ -225,7 +234,11 @@ async function run() {
 				return false;
 			}
 
-			return leader.content[6] !== 'j';
+			if (['c','d','r','j'].includes(leader.content[6])) {
+				return false;
+			}
+			
+			return true;
 		}
 
 		async function sendRecords(records) { // eslint-disable-line require-await
