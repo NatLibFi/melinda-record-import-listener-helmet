@@ -134,7 +134,7 @@ async function run() {
 			}
 		}
 
-		async function fetchRecords({offset = 0, records = [], numberOfRecordsFound = 0, timeBeforeFetching}={}) {			
+		async function fetchRecords({offset = 0, records = [], numberOfRecordsFound = 0, timeBeforeFetching} = {}) {
 			timeBeforeFetching = records.length > 0 ? timeBeforeFetching : moment();
 
 			const url = new URL(`${process.env.HELMET_API_URL}/bibs`);
@@ -147,8 +147,6 @@ async function run() {
 			});
 
 			url.search = parameters;
-
-			logger.log('debug', url.toString());
 
 			const response = await fetch(url.toString(), {headers: {
 				Authorization: `Bearer ${authorizationToken}`,
@@ -192,7 +190,7 @@ async function run() {
 			const leader = record.varFields.find(f => f.fieldTag === '_');
 			const materialType = record.materialType.code.trim();
 
-			if (!record.catalogDate || !moment(record.catalogDate).isValid()) {				
+			if (!record.catalogDate || !moment(record.catalogDate).isValid()) {
 				return false;
 			}
 
@@ -210,21 +208,11 @@ async function run() {
 				if (f655) {
 					const a = f655.subfields.find(sf => sf.tag === 'a');
 
-					if (a && [
-						'kartastot',
-						'aikakauslehdet',
-						'sanomalehdet'
-					].includes(a.content)) {
+					if (a && a.content === 'kartastot') {
 						return false;
 					}
 				}
 			}
-
-			// Prepublication records
-/*			if (leader.content[17] === '8') {
-				return false;
-			}
-*/
 
 			if (leader.content[17] !== '4') {
 				return false;
@@ -234,10 +222,10 @@ async function run() {
 				return false;
 			}
 
-			if (['c','d','r','j'].includes(leader.content[6])) {
+			if (['c', 'd', 'j'].includes(leader.content[6])) {
 				return false;
 			}
-			
+
 			return true;
 		}
 
