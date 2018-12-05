@@ -39,36 +39,30 @@ import HttpStatusCodes from 'http-status-codes';
 import nodeUtils from 'util';
 import {CommonUtils as Utils} from '@natlibfi/melinda-record-import-commons';
 
+import {
+	RECORDS_FETCH_LIMIT, POLL_INTERVAL, EARLIEST_CATALOG_TIME,
+	POLL_CHANGE_TIMESTAMP, CHANGE_TIMESTAMP_FILE,
+	RECORD_IMPORT_API_URL, RECORD_IMPORT_API_PROFILE,
+	RECORD_IMPORT_API_USERNAME, RECORD_IMPORT_API_PASSWORD,
+	HELMET_API_URL, HELMET_API_KEY, HELMET_API_SECRET
+} from './config';
+
+const {registerSignalHandlers, createLogger} = Utils;
 run();
 
 async function run() {
-	Utils.registerSignalHandlers();
-	Utils.checkEnv([
-		'HELMET_API_KEY',
-		'HELMET_API_SECRET',
-		'HELMET_API_URL',
-		'RECORD_IMPORT_API_URL',
-		'RECORD_IMPORT_API_USERNAME',
-		'RECORD_IMPORT_API_PASSWORD',
-		'RECORD_IMPORT_API_PROFILE'
-	]);
+	registerSignalHandlers();
 
-	const RECORDS_FETCH_LIMIT = 1000;
-	const POLL_INTERVAL = process.env.POLL_INTERVAL || 1800000; // Default is 30 minutes
-	const CHANGE_TIMESTAMP_FILE = process.env.POLL_CHANGE_TIMESTAMP_FILE || path.resolve(__dirname, '..', '.poll-change-timestamp.json');
-	const earliestCatalogTime = process.env.EARLIEST_CATALOG_TIME ? moment(process.env.EARLIEST_CATALOG_TIME) : undefined;
+	const earliestCatalogTime = EARLIEST_CATALOG_TIME ? moment(EARLIEST_CATALOG_TIME) : undefined;
 	const setTimeoutPromise = nodeUtils.promisify(setTimeout);
 
-	const logger = Utils.createLogger();
-	const stopHealthCheckService = Utils.startHealthCheckService(process.env.HEALTH_CHECK_PORT);
+	const logger = createLogger();
 
 	try {
 		logger.log('info', 'Starting melinda-record-import-harvester-helmet');
 		await processRecords();
-		stopHealthCheckService();
 		process.exit();
 	} catch (err) {
-		stopHealthCheckService();
 		logger.error(err.stack);
 		process.exit(-1);
 	}
@@ -81,7 +75,7 @@ async function run() {
 
 		const {timeBeforeFetching, numberOfRecordsFound, records} = await fetchRecords();
 
-		logger.log('info', `${records.length}/${numberOfRecordsFound} records retrieved passed the filter`);
+		logger.log('info', `${records.length}/${numberOfRecordsFound} records passed the filter`);
 
 		if (records.length > 0) {
 			await sendRecords(records);
@@ -100,8 +94,8 @@ async function run() {
 				return moment(data.timestamp);
 			}
 
-			if (process.env.POLL_CHANGE_TIMESTAMP) {
-				return moment(process.env.POLL_CHANGE_TIMESTAMP);
+			if (POLL_CHANGE_TIMESTAMP) {
+				return moment(POLL_CHANGE_TIMESTAMP);
 			}
 
 			return moment();
@@ -115,7 +109,7 @@ async function run() {
 
 		async function validateAuthorizationToken(token) {
 			if (token) {
-				const response = await fetch(`${process.env.HELMET_API_URL}/info/token`);
+				const response = await fetch(`${HELMET_API_URL}/info/token`);
 				if (response.status === HttpStatusCodes.OK) {
 					return token;
 				}
@@ -124,8 +118,8 @@ async function run() {
 			return authenticate();
 
 			async function authenticate() {
-				const credentials = `${process.env.HELMET_API_KEY}:${process.env.HELMET_API_SECRET}`;
-				const response = await fetch(`${process.env.HELMET_API_URL}/token`, {method: 'POST', headers: {
+				const credentials = `${HELMET_API_KEY}:${HELMET_API_SECRET}`;
+				const response = await fetch(`${HELMET_API_URL}/token`, {method: 'POST', headers: {
 					Authorization: `Basic ${Buffer.from(credentials).toString('base64')}`
 				}});
 
@@ -137,7 +131,7 @@ async function run() {
 		async function fetchRecords({offset = 0, records = [], numberOfRecordsFound = 0, timeBeforeFetching} = {}) {
 			timeBeforeFetching = records.length > 0 ? timeBeforeFetching : moment();
 
-			const url = new URL(`${process.env.HELMET_API_URL}/bibs`);
+			const url = new URL(`${HELMET_API_URL}/bibs`);
 			const parameters = new URLSearchParams({
 				offset,
 				limit: RECORDS_FETCH_LIMIT,
@@ -202,6 +196,14 @@ async function run() {
 				return false;
 			}
 
+			/*if (record.varFields.some(f => f.fieldTag === '007')) {
+				return false;
+			}*/
+
+			if (isFromOverDrive()) {
+				return false;
+			}
+
 			if (leader.content[7] === 'm') {
 				const f655 = record.varFields.find(f => f.fieldTag === '655');
 
@@ -227,6 +229,23 @@ async function run() {
 			}
 
 			return true;
+
+			function isFromOverDrive() {
+				const f037 = record.varFields.filter(f => f.fieldTag === '037');
+				const f710 = record.varFields.filter(f => f.fieldTag === '710');
+
+				return f037.some(match037) || f710.some(match710);
+
+				function match037(f) {
+					const b = f.subfields.find(sf => sf.code === 'b' && sf.value === 'OverDrive, Inc.');
+					const n = f.subfields.find(sf => sf.code === 'n' && sf.value === 'http://www.overdrive.com');
+					return b && n;
+				}
+
+				function match710(f) {
+					return f.subfields.find(sf => sf.code === 'a' && /^OverDrive/.test(sf.value));
+				}
+			}
 		}
 
 		async function sendRecords(records) { // eslint-disable-line require-await
