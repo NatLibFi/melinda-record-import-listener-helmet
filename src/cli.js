@@ -28,53 +28,27 @@
 
 /* eslint-disable import/default */
 
-import {registerSignalHandlers, createLogger, createApiClient} from '@natlibfi/melinda-record-import-commons';
 import startHarvesting from './harvest';
-
+import {HarvesterUtils} from '@natlibfi/melinda-record-import-commons';
 import {
 	RECORDS_FETCH_LIMIT, POLL_INTERVAL, EARLIEST_CATALOG_TIME,
 	POLL_CHANGE_TIMESTAMP, CHANGE_TIMESTAMP_FILE,
-	RECORD_IMPORT_API_URL, RECORD_IMPORT_API_PROFILE,
-	RECORD_IMPORT_API_USERNAME, RECORD_IMPORT_API_PASSWORD,
 	HELMET_API_URL, HELMET_API_KEY, HELMET_API_SECRET
 } from './config';
 
-run();
-
-async function run() {
-	const Logger = createLogger();
-	const client = createApiClient({url: RECORD_IMPORT_API_URL, username: RECORD_IMPORT_API_USERNAME, password: RECORD_IMPORT_API_PASSWORD});
-
-	registerSignalHandlers();
-
-	try {
-		Logger.log('info', 'Starting melinda-record-import-harvester-helmet');
-
-		await startHarvesting({
-			recordsCallback: createBlob,
-			apiURL: HELMET_API_URL,
-			apiKey: HELMET_API_KEY,
-			apiSecret: HELMET_API_SECRET,
-			pollChangeTimestamp: POLL_CHANGE_TIMESTAMP,
-			pollInterval: POLL_INTERVAL,
-			changeTimestampFile: CHANGE_TIMESTAMP_FILE,
-			recordsFetchLimit: RECORDS_FETCH_LIMIT,
-			earliestCatalogTime: EARLIEST_CATALOG_TIME
-		});
-
-		process.exit();
-	} catch (err) {
-		Logger.log('error', err.stack);
-		process.exit(-1);
-	}
-
-	async function createBlob(records) {
-		const id = await client.create({
-			blob: JSON.stringify(records),
-			type: 'application/json',
-			profile: RECORD_IMPORT_API_PROFILE
-		});
-
-		Logger.info(`Created new blob ${id}`);
-	}
-}
+HarvesterUtils.cli('melinda-record-import-harvester-helmet', async callback => {
+	await startHarvesting({
+		apiURL: HELMET_API_URL,
+		apiKey: HELMET_API_KEY,
+		apiSecret: HELMET_API_SECRET,
+		pollChangeTimestamp: POLL_CHANGE_TIMESTAMP,
+		pollInterval: POLL_INTERVAL,
+		changeTimestampFile: CHANGE_TIMESTAMP_FILE,
+		recordsFetchLimit: RECORDS_FETCH_LIMIT,
+        earliestCatalogTime: EARLIEST_CATALOG_TIME,
+        onlyOnce: true,
+		recordsCallback: async records => {
+			await callback(JSON.stringify(records, undefined, 2));
+		}
+	});
+});

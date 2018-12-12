@@ -26,14 +26,13 @@
 *
 */
 
-import {CommonUtils as Utils} from '@natlibfi/melinda-record-import-commons';
-const {readEnvironmentVariable} = Utils;
+import {readEnvironmentVariable} from '@natlibfi/melinda-record-import-commons';
 
 // Default is 30 minutes
 export const RECORDS_FETCH_LIMIT = 1000;
 export const POLL_INTERVAL = readEnvironmentVariable('POLL_INTERVAL', 1800000);
 export const EARLIEST_CATALOG_TIME = readEnvironmentVariable('EARLIEST_CATALOG_TIME', '2018-09-01');
-export const POLL_CHANGE_TIMESTAMP = readEnvironmentVariable('POLL_CHANGE_TIMESTAMP', undefined);
+export const POLL_CHANGE_TIMESTAMP = readEnvironmentVariable('POLL_CHANGE_TIMESTAMP', null);
 export const CHANGE_TIMESTAMP_FILE = readEnvironmentVariable('CHANGE_TIMESTAMP_FILE', '.poll-change-timestamp.json');
 
 export const HELMET_API_URL = readEnvironmentVariable('HELMET_API_URL');
