@@ -45,8 +45,8 @@ HarvesterUtils.cli('melinda-record-import-harvester-helmet', async callback => {
 		pollInterval: POLL_INTERVAL,
 		changeTimestampFile: CHANGE_TIMESTAMP_FILE,
 		recordsFetchLimit: RECORDS_FETCH_LIMIT,
-        earliestCatalogTime: EARLIEST_CATALOG_TIME,
-        onlyOnce: true,
+		earliestCatalogTime: EARLIEST_CATALOG_TIME,
+		onlyOnce: true,
 		recordsCallback: async records => {
 			await callback(JSON.stringify(records, undefined, 2));
 		}

@@ -39,7 +39,7 @@ export const HELMET_API_URL = readEnvironmentVariable('HELMET_API_URL');
 export const HELMET_API_KEY = readEnvironmentVariable('HELMET_API_KEY');
 export const HELMET_API_SECRET = readEnvironmentVariable('HELMET_API_SECRET');
 
-export const RECORD_IMPORT_API_URL = readEnvironmentVariable('RECORD_IMPORT_API_URL');
-export const RECORD_IMPORT_API_PROFILE = readEnvironmentVariable('RECORD_IMPORT_API_PROFILE');
-export const RECORD_IMPORT_API_USERNAME = readEnvironmentVariable('RECORD_IMPORT_API_USERNAME');
-export const RECORD_IMPORT_API_PASSWORD = readEnvironmentVariable('RECORD_IMPORT_API_PASSWORD');
+export const RECORD_IMPORT_URL = readEnvironmentVariable('RECORD_IMPORT_URL');
+export const RECORD_IMPORT_PROFILE = readEnvironmentVariable('RECORD_IMPORT_PROFILE');
+export const RECORD_IMPORT_USERNAME = readEnvironmentVariable('RECORD_IMPORT_USERNAME');
+export const RECORD_IMPORT_PASSWORD = readEnvironmentVariable('RECORD_IMPORT_PASSWORD');

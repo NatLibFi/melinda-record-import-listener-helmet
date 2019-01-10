@@ -35,12 +35,12 @@ import nodeUtils from 'util';
 import {createLogger} from '@natlibfi/melinda-record-import-commons';
 import filterRecord from './filter';
 
-export default async function({recordsCallback, apiURL, apiKey, apiSecret, recordsFetchLimit, pollInterval, pollChangeTimestamp, changeTimestampFile, earliestCatalogTime = moment(), onlyOnce = false}) {
+export default async function ({recordsCallback, apiURL, apiKey, apiSecret, recordsFetchLimit, pollInterval, pollChangeTimestamp, changeTimestampFile, earliestCatalogTime = moment(), onlyOnce = false}) {
 	const Logger = createLogger();
 
 	return process();
 
-	async function process({authorizationToken, pollChangeTime}={}) {
+	async function process({authorizationToken, pollChangeTime} = {}) {
 		const setTimeoutPromise = nodeUtils.promisify(setTimeout);
 
 		pollChangeTime = pollChangeTime || getPollChangeTime();
@@ -126,7 +126,7 @@ export default async function({recordsCallback, apiURL, apiKey, apiSecret, recor
 				if (filtered.length > 0) {
 					await recordsCallback(filtered);
 				}
-				
+
 				if (result.entries.length === recordsFetchLimit) {
 					return harvest({
 						offset: offset + recordsFetchLimit,

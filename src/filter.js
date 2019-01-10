@@ -85,7 +85,7 @@ export default function (record, earliestCatalogTime) {
 		return f037.some(match037) || f710.some(match710);
 
 		function match037(f) {
-			const b = f.subfields.find(sf => sf.code === 'b' && sf.value === 'OverDrive, Inc.');
+			const b = f.subfields.find(sf => sf.code === 'b' && /^OverDrive/.test(sf.value));
 			const n = f.subfields.find(sf => sf.code === 'n' && sf.value === 'http://www.overdrive.com');
 			return b && n;
 		}

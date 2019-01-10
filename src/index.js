@@ -34,8 +34,8 @@ import startHarvesting from './harvest';
 import {
 	RECORDS_FETCH_LIMIT, POLL_INTERVAL, EARLIEST_CATALOG_TIME,
 	POLL_CHANGE_TIMESTAMP, CHANGE_TIMESTAMP_FILE,
-	RECORD_IMPORT_API_URL, RECORD_IMPORT_API_PROFILE,
-	RECORD_IMPORT_API_USERNAME, RECORD_IMPORT_API_PASSWORD,
+	RECORD_IMPORT_URL, RECORD_IMPORT_PROFILE,
+	RECORD_IMPORT_USERNAME, RECORD_IMPORT_PASSWORD,
 	HELMET_API_URL, HELMET_API_KEY, HELMET_API_SECRET
 } from './config';
 
@@ -43,7 +43,7 @@ run();
 
 async function run() {
 	const Logger = createLogger();
-	const client = createApiClient({url: RECORD_IMPORT_API_URL, username: RECORD_IMPORT_API_USERNAME, password: RECORD_IMPORT_API_PASSWORD});
+	const client = createApiClient({url: RECORD_IMPORT_URL, username: RECORD_IMPORT_USERNAME, password: RECORD_IMPORT_PASSWORD});
 
 	registerSignalHandlers();
 
@@ -72,7 +72,7 @@ async function run() {
 		const id = await client.create({
 			blob: JSON.stringify(records),
 			type: 'application/json',
-			profile: RECORD_IMPORT_API_PROFILE
+			profile: RECORD_IMPORT_PROFILE
 		});
 
 		Logger.info(`Created new blob ${id}`);
