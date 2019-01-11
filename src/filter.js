@@ -28,9 +28,31 @@
 
 import moment from 'moment';
 
+const EXCLUDED_MATERIAL_TYPES = [
+	'd',
+	'e',
+	'q',
+	'4',
+	'6',
+	'j',
+	'7',
+	'n',
+	'f'
+];
+
 export default function (record, earliestCatalogTime) {
 	const leader = record.varFields.find(f => f.fieldTag === '_');
 	const materialType = record.materialType.code.trim();
+
+	checkLeader();
+
+	if (EXCLUDED_MATERIAL_TYPES.includes(materialType)) {
+		return false;
+	}
+
+	if (isFromOverDrive()) {
+		return false;
+	}
 
 	if (!record.catalogDate || !moment(record.catalogDate).isValid()) {
 		return false;
@@ -40,43 +62,33 @@ export default function (record, earliestCatalogTime) {
 		return false;
 	}
 
-	if (!leader) {
-		return false;
-	}
+	return true;
 
-	/* If (record.varFields.some(f => f.marcTag === '007')) {
-        return false;
-    } */
+	function checkLeader() {
+		if (!leader) {
+			return false;
+		}
 
-	if (isFromOverDrive()) {
-		return false;
-	}
+		if (leader.content[17] !== '4') {
+			return false;
+		}
 
-	if (leader.content[7] === 'm') {
-		const f655 = record.varFields.find(f => f.marcTag === '655');
+		if (['c', 'd', 'j'].includes(leader.content[6])) {
+			return false;
+		}
 
-		if (f655) {
-			const a = f655.subfields.find(sf => sf.tag === 'a');
+		if (leader.content[7] === 'm') {
+			const f655 = record.varFields.find(f => f.marcTag === '655');
 
-			if (a && a.content === 'kartastot') {
-				return false;
+			if (f655) {
+				const a = f655.subfields.find(sf => sf.tag === 'a');
+
+				if (a && a.content === 'kartastot') {
+					return false;
+				}
 			}
 		}
 	}
-
-	if (leader.content[17] !== '4') {
-		return false;
-	}
-
-	if (['q', '7'].includes(materialType)) {
-		return false;
-	}
-
-	if (['c', 'd', 'j'].includes(leader.content[6])) {
-		return false;
-	}
-
-	return true;
 
 	function isFromOverDrive() {
 		const f037 = record.varFields.filter(f => f.marcTag === '037');
