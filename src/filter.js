@@ -46,6 +46,15 @@ export default function (record, earliestCatalogTime) {
 
 	checkLeader();
 
+	if (!record.varFields.find(f => f.marcTag === '008')) {
+		return false;
+	}
+
+	// Uncomment this to filter out records with 007 (For testing)
+	/* if (record.varFields.find(f => f.marcTag === '007')) {
+		return false;
+	} */
+
 	if (EXCLUDED_MATERIAL_TYPES.includes(materialType)) {
 		return false;
 	}
