@@ -44,7 +44,9 @@ export default function (record, earliestCatalogTime) {
 	const leader = record.varFields.find(f => f.fieldTag === '_');
 	const materialType = record.materialType.code.trim();
 
-	checkLeader();
+	if (!checkLeader()) {
+		return false;
+	}
 
 	if (!record.varFields.find(f => f.marcTag === '008')) {
 		return false;

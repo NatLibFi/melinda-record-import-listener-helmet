@@ -25,11 +25,11 @@
 		"prepublishOnly": "npm run build:transpile",
 		"check-deps": "npm-check;exit 0",
 		"lint": "eslint --fix src",
-		"test": "npm run lint",
-		"clean": "rimraf build dist",
+		"test:base": "cross-env NODE_ENV=test mocha --require @babel/register",
+		"test": "npm run lint && npm run test:base -- src/**/*.spec.js",
 		"build:transpile": "babel src --source-maps --delete-dir-on-start --out-dir=dist --minified",
 		"build": "npm run build:transpile && npm run check-deps",
-		"watch": "cross-env DEBUG=1 NODE_ENV=test nodemon --watch src --exec 'npm test'"
+		"watch": "cross-env DEBUG=1 NODE_ENV=debug nodemon --watch src --exec 'npm test'"
 	},
 	"dependencies": {
 		"@natlibfi/melinda-record-import-commons": "file:../melinda-record-import-commons",
@@ -45,13 +45,17 @@
 		"@babel/preset-env": "^7.2.0",
 		"@babel/register": "^7.0.0",
 		"babel-eslint": "^8.2.6",
+		"babel-plugin-rewire": "^1.2.0",
+		"chai": "^4.2.0",
 		"cross-env": "^5.2.0",
-		"eslint": "^5.9.0",
-		"eslint-config-xo": "^0.25.1",
+		"eslint": "^5.5.0",
+		"eslint-config-xo": "^0.25.0",
 		"eslint-plugin-import": "^2.13.0",
-		"nodemon": "^1.18.7",
-		"npm-check": "^5.9.0",
-		"rimraf": "^2.6.2"
+		"mocha": "^5.2.0",
+		"nodemon": "^1.18.4",
+		"npm-check": "^5.7.1",
+		"sinon": "^7.2.2",
+		"sinon-chai": "^3.3.0"
 	},
 	"eslintConfig": {
 		"parser": "babel-eslint",
@@ -66,6 +70,9 @@
 			"prefer-arrow-callback": [
 				"error"
 			]
+		},
+		"env": {
+			"mocha": true
 		}
 	},
 	"babel": {
@@ -78,6 +85,13 @@
 					}
 				}
 			]
-		]
+		],
+		"env": {
+			"test": {
+				"plugins": [
+					"rewire"
+				]
+			}
+		}
 	}
 }
