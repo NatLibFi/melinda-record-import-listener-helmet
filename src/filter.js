@@ -88,16 +88,24 @@ export default function (record, earliestCatalogTime) {
 			return false;
 		}
 
-		if (leader.content[7] === 'm') {
-			const f655 = record.varFields.find(f => f.marcTag === '655');
+		if (isMap()) {
+			return false;
+		}
 
-			if (f655) {
-				const a = f655.subfields.find(sf => sf.tag === 'a');
+		return true;
 
-				if (a && a.content === 'kartastot') {
-					return false;
+		function isMap() {
+			return leader.content[7] === 'm' && record.varFields.some(f => {
+				if (f.marcTag === '655') {
+					const a = f.subfields.find(sf => sf.tag === 'a');
+
+					if (a && a.content === 'kartastot') {
+						return true;
+					}
 				}
-			}
+
+				return false;
+			});
 		}
 	}
 

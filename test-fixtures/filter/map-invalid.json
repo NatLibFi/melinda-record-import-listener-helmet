@@ -1,0 +1,713 @@
+{
+    "result": false,
+    "record": {
+        "id": "2362490",
+        "materialType": {
+            "code": "3  "
+        },
+        "catalogDate": "2018-10-31",
+        "varFields": [
+            {
+                "fieldTag": "a",
+                "marcTag": "100",
+                "ind1": "1",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Beaton, Alistair,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "dramaturgi"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Carmichael, Ian,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "ääninäyttelijä"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Sisältää (dramatisointi):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Beaton, Alistair,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "dramaturgi."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Murder must advertise"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Sisältää (dramatisointi):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Beaton, Alistair,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "dramaturgi."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Nine tailors"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Sisältää (dramatisointi):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Beaton, Alistair,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "dramaturgi."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Busman's honeymoon"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Sisältää (dramatisointi):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Bakewell, Michael,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "dramaturgi."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Gaudy night"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Dramatisoinnin perustana (teos):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Sayers, Dorothy L."
+                    },
+                    {
+                        "tag": "e",
+                        "content": "kirjoittaja."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Murder must advertise"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Dramatisoinnin perustana (teos):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Sayers, Dorothy L."
+                    },
+                    {
+                        "tag": "e",
+                        "content": "kirjoittaja."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Nine tailors"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Dramatisoinnin perustana (teos):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Sayers, Dorothy L."
+                    },
+                    {
+                        "tag": "e",
+                        "content": "kirjoittaja."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Gaudy night"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "700",
+                "ind1": "1",
+                "ind2": "2",
+                "subfields": [
+                    {
+                        "tag": "i",
+                        "content": "Dramatisoinnin perustana (teos):"
+                    },
+                    {
+                        "tag": "a",
+                        "content": "Sayers, Dorothy L."
+                    },
+                    {
+                        "tag": "e",
+                        "content": "kirjoittaja."
+                    },
+                    {
+                        "tag": "t",
+                        "content": "Busman's honeymoon"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "710",
+                "ind1": "2",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "BBC Radio 4,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "tuotantoyhtiö"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "600",
+                "ind1": "1",
+                "ind2": "4",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Wimsey, Peter,"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "(fiktiivinen hahmo)"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "äänikirjat"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "slm/fin"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "kartastot"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "ysa"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "jännityskirjallisuus"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "slm/fin"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "romaanit"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "slm/fin"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "kaunokirjallisuus"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "slm/fin"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "englanninkielinen kirjallisuus"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "kaunokki"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "i",
+                "marcTag": "020",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "978-1-78529-887-5"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "j",
+                "marcTag": "095",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "4.3"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "k",
+                "marcTag": "091",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "87"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "505",
+                "ind1": "0",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Murder must advertise -- The Nine tailors -- Gaudy night -- Busman's honeymoon"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "511",
+                "ind1": "0",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Ääniroolissa: Ian Carmichael"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "534",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "p",
+                        "content": "Alun perin julkaistu:"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "1979, 1980, 1983, 2010"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "546",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "englanti"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "574",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Heli Uski"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "599",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "CDLEVY / CDSKIVA"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "o",
+                "marcTag": "001",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "9781785298875"
+            },
+            {
+                "fieldTag": "p",
+                "marcTag": "264",
+                "ind1": " ",
+                "ind2": "1",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "[London] :"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "BBC Worldwide,"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "2018"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "300",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "11 CD-äänilevyä (11 h 15 min)"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "336",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "puhe"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "spw"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rdacontent"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "337",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "audio"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "s"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rdamedia"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "338",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "äänilevy"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "sd"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rdacarrier"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "344",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "digitaalinen"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "optinen"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "347",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "äänitiedosto"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "CD audio"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "s",
+                "marcTag": "830",
+                "ind1": " ",
+                "ind2": "0",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "BBC Radio drama collection;"
+                    },
+                    {
+                        "tag": "v",
+                        "content": "volume 3"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "t",
+                "marcTag": "245",
+                "ind1": "1",
+                "ind2": "0",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Lord Peter Wimsey :"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "four BBC Radio 4 full-cast dramatisations /"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "Dorothy L Sayers ; dramatised by Alistair Beaton"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "003",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "FI-BTJ"
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "008",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "180903s2018    xxk||||g||||||||| | eng|dnim8c "
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "040",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "FI-He"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "fin"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "rda"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "041",
+                "ind1": "0",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "eng"
+                    },
+                    {
+                        "tag": "d",
+                        "content": "eng"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "084",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "84.5"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "ykl"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "_",
+                "content": "00000nim a22002294c 4500"
+            }
+        ]
+    }
+}
