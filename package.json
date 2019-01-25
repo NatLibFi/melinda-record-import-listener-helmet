@@ -20,8 +20,9 @@
 		"node": ">=8"
 	},
 	"scripts": {
-		"start": "babel-node src/index.js",
-		"cli": "babel-node src/cli.js",
+		"start": "babel-node src/index",
+		"cli": "babel-node src/cli",
+		"concat-files": "babel-node src/concat-files",
 		"prepublishOnly": "npm run build:transpile",
 		"check-deps": "npm-check;exit 0",
 		"lint": "eslint --fix src",

@@ -53,9 +53,9 @@ export default function (record, earliestCatalogTime) {
 	}
 
 	// Uncomment this to filter out records with 007 (For testing)
-	/* if (record.varFields.find(f => f.marcTag === '007')) {
+	/*if (record.varFields.find(f => f.marcTag === '007')) {
 		return false;
-	} */
+	}*/
 
 	if (EXCLUDED_MATERIAL_TYPES.includes(materialType)) {
 		return false;
@@ -116,13 +116,13 @@ export default function (record, earliestCatalogTime) {
 		return f037.some(match037) || f710.some(match710);
 
 		function match037(f) {
-			const b = f.subfields.find(sf => sf.code === 'b' && /^OverDrive/.test(sf.value));
-			const n = f.subfields.find(sf => sf.code === 'n' && sf.value === 'http://www.overdrive.com');
+			const b = f.subfields.find(sf => sf.tag === 'b' && /^OverDrive/.test(sf.content));
+			const n = f.subfields.find(sf => sf.tag === 'n' && sf.content === 'http://www.overdrive.com');
 			return b && n;
 		}
 
 		function match710(f) {
-			return f.subfields.find(sf => sf.code === 'a' && /^OverDrive/.test(sf.value));
+			return f.subfields.find(sf => sf.tag === 'a' && /^overdrive/i.test(sf.content));
 		}
 	}
 }
