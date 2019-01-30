@@ -53,9 +53,9 @@ export default function (record, earliestCatalogTime) {
 	}
 
 	// Uncomment this to filter out records with 007 (For testing)
-	/*if (record.varFields.find(f => f.marcTag === '007')) {
+	/* if (record.varFields.find(f => f.marcTag === '007')) {
 		return false;
-	}*/
+	} */
 
 	if (EXCLUDED_MATERIAL_TYPES.includes(materialType)) {
 		return false;
@@ -95,7 +95,7 @@ export default function (record, earliestCatalogTime) {
 		return true;
 
 		function isMap() {
-			return leader.content[7] === 'm' && record.varFields.some(f => {
+			return leader.content[6] === 'a' && record.varFields.some(f => {
 				if (f.marcTag === '655') {
 					const a = f.subfields.find(sf => sf.tag === 'a');
 
