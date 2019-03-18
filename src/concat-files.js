@@ -26,29 +26,22 @@
 *
 */
 
-/* eslint-disable import/default */
+import fs from 'fs';
+import path from 'path';
 
-import {Harvester} from '@natlibfi/melinda-record-import-commons';
-import createHarvestCallback from './harvest';
+if (process.argv.length < 4) {
+	console.log('USAGE: <sourceDirectory> <targetFile>');
+	process.exit(1);
+}
 
-const {startHarvester} = Harvester;
+const dir = process.argv[2];
+const targetFile = process.argv[3];
 
-import {
-	RECORDS_FETCH_LIMIT, POLL_INTERVAL, EARLIEST_CATALOG_TIME,
-	POLL_CHANGE_TIMESTAMP, CHANGE_TIMESTAMP_FILE,
-	HELMET_API_URL, HELMET_API_KEY, HELMET_API_SECRET
-} from './config';
+const records = fs.readdirSync(dir)
+	.sort((a, b) => Number(a) - Number(b))
+	.reduce((acc, file) => {
+		const records = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+		return acc.concat(records);
+	}, []);
 
-startHarvester(async ({recordsCallback}) => {
-	return createHarvestCallback({
-		recordsCallback,
-		apiURL: HELMET_API_URL,
-		apiKey: HELMET_API_KEY,
-		apiSecret: HELMET_API_SECRET,
-		pollChangeTimestamp: POLL_CHANGE_TIMESTAMP,
-		pollInterval: POLL_INTERVAL,
-		changeTimestampFile: CHANGE_TIMESTAMP_FILE,
-		recordsFetchLimit: RECORDS_FETCH_LIMIT,
-		earliestCatalogTime: EARLIEST_CATALOG_TIME
-	});
-});
+fs.writeFileSync(targetFile, JSON.stringify(records, undefined, 2));

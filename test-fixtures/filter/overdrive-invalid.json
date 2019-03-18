@@ -1,0 +1,646 @@
+{
+    "result": false,
+    "record": {
+        "id": "2201162",
+        "materialType": {
+            "code": "z  "
+        },
+        "catalogDate": "2018-12-12",
+        "varFields": [
+            {
+                "fieldTag": "a",
+                "marcTag": "100",
+                "ind1": "1",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Jannert Kallenberg, Ulrika,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "författare."
+                    }
+                ]
+            },
+            {
+                "fieldTag": "b",
+                "marcTag": "710",
+                "ind1": "2",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "OverDrive, Inc.,"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "distributor."
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "e-böcker"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "slm/swe"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Overdrive"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "600",
+                "ind1": "1",
+                "ind2": "4",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Jannert Kallenberg, Ulrika"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "655",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "memoarer"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "slm/swe"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "självmord"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "pappor"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "döden"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "familjen"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "sorg"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "sorgearbete"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "anhöriga"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "d",
+                "marcTag": "650",
+                "ind1": " ",
+                "ind2": "7",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "föräldrar-barn-förhållande"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "allars"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "i",
+                "marcTag": "020",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "978-91-7557-894-1"
+                    },
+                    {
+                        "tag": "q",
+                        "content": "epub"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "j",
+                "marcTag": "095",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "821 "
+                    },
+                    {
+                        "tag": "b",
+                        "content": "618.241"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "k",
+                "marcTag": "091",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "93"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "500",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Electronic book."
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "500",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "EPUB-publikation"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "506",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Helmet bibliotekskort krävs"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "533",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Electronic reproduction."
+                    },
+                    {
+                        "tag": "b",
+                        "content": "Stockholm"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "Hoi Förlag"
+                    },
+                    {
+                        "tag": "d",
+                        "content": "2015"
+                    },
+                    {
+                        "tag": "n",
+                        "content": "Available via World Wide Web."
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "538",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Internet-koppling, webbläsare ; läsprogram"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "546",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "svenska"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "574",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "tero.isosaari()hel.fi"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "n",
+                "marcTag": "599",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "E-KIRJA / E-BOK"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "o",
+                "marcTag": "001",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "9789175578941"
+            },
+            {
+                "fieldTag": "p",
+                "marcTag": "264",
+                "ind1": " ",
+                "ind2": "1",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Stockholm :"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "Hoi Förlag,"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "[2015]"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "p",
+                "marcTag": "264",
+                "ind1": " ",
+                "ind2": "4",
+                "subfields": [
+                    {
+                        "tag": "c",
+                        "content": "©2015"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "300",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "E-bok (EPUB 2630 kb; motsvarar 203 sidor)"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "336",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "text"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "txt"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rdacontent"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "337",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "dator"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "c"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rdamedia"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "338",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "onlineresurs"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "cr"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rdacarrier"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "r",
+                "marcTag": "347",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "text file"
+                    },
+                    {
+                        "tag": "2",
+                        "content": "rda"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "t",
+                "marcTag": "245",
+                "ind1": "1",
+                "ind2": "0",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "Döden ingen talar om /"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "Ulrika Jannert Kallenberg"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "003",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "TLC"
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "005",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "20150415220223.0"
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "006",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "m        d        "
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "007",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "cr unu||||||||"
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "008",
+                "ind1": " ",
+                "ind2": " ",
+                "content": "150415s2015    sw |||| o    |||| ||swe dnam4c "
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "037",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "B80D33B6-164B-4A58-BE97-4399E80F80B3"
+                    },
+                    {
+                        "tag": "b",
+                        "content": "OverDrive, Inc."
+                    },
+                    {
+                        "tag": "n",
+                        "content": "http://www.overdrive.com"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "040",
+                "ind1": " ",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "TLC"
+                    },
+                    {
+                        "tag": "c",
+                        "content": "TLC"
+                    },
+                    {
+                        "tag": "d",
+                        "content": "TLC"
+                    },
+                    {
+                        "tag": "e",
+                        "content": "rda"
+                    },
+                    {
+                        "tag": "d",
+                        "content": "FI-He"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "041",
+                "ind1": "0",
+                "ind2": " ",
+                "subfields": [
+                    {
+                        "tag": "a",
+                        "content": "swe"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "y",
+                "marcTag": "856",
+                "ind1": "4",
+                "ind2": "0",
+                "subfields": [
+                    {
+                        "tag": "z",
+                        "content": "Länk till e-boken"
+                    },
+                    {
+                        "tag": "u",
+                        "content": "https://helmet.overdrive.com/media/2142549"
+                    }
+                ]
+            },
+            {
+                "fieldTag": "_",
+                "content": "00000nam  22004694c 4500"
+            }
+        ]
+    }
+}
