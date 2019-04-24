@@ -5,3 +5,4 @@ dist
 .nyc_output
 .env
 .poll-change-timestamp.json
+package-lock.json
