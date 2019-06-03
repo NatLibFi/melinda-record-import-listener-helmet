@@ -4,7 +4,7 @@
 *
 * Helmet record harvester for the Melinda record batch import system
 *
-* Copyright (C) 2018 University Of Helsinki (The National Library Of Finland)
+* Copyright (c) 2018-2019 University Of Helsinki (The National Library Of Finland)
 *
 * This file is part of melinda-record-import-harvester-helmet
 *
@@ -26,20 +26,18 @@
 *
 */
 
-import {readEnvironmentVariable} from '@natlibfi/melinda-record-import-commons';
+import {Utils} from '@natlibfi/melinda-commons';
+
+const {readEnvironmentVariable} = Utils;
 
 // Default is 30 minutes
-export const RECORDS_FETCH_LIMIT = 1000;
-export const POLL_INTERVAL = readEnvironmentVariable('POLL_INTERVAL', 1800000);
-export const EARLIEST_CATALOG_TIME = readEnvironmentVariable('EARLIEST_CATALOG_TIME', '2018-09-01');
-export const POLL_CHANGE_TIMESTAMP = readEnvironmentVariable('POLL_CHANGE_TIMESTAMP', null);
-export const CHANGE_TIMESTAMP_FILE = readEnvironmentVariable('CHANGE_TIMESTAMP_FILE', '.poll-change-timestamp.json');
+export const POLL_INTERVAL = readEnvironmentVariable('POLL_INTERVAL', {defaultValue: 1800000, format: v => Number(v)});
+export const RECORDS_FETCH_LIMIT = readEnvironmentVariable('RECORDS_FETCH_LIMIT', {defaultValue: 1000, format: v => Number(v)});
+
+export const EARLIEST_CATALOG_TIME = readEnvironmentVariable('EARLIEST_CATALOG_TIME', {defaultValue: '2018-09-01'});
+export const CHANGE_TIMESTAMP_FILE = readEnvironmentVariable('CHANGE_TIMESTAMP_FILE', {defaultValue: '.poll-change-timestamp.json'});
+export const POLL_CHANGE_TIMESTAMP = readEnvironmentVariable('POLL_CHANGE_TIMESTAMP', {defaultValue: null});
 
 export const HELMET_API_URL = readEnvironmentVariable('HELMET_API_URL');
 export const HELMET_API_KEY = readEnvironmentVariable('HELMET_API_KEY');
 export const HELMET_API_SECRET = readEnvironmentVariable('HELMET_API_SECRET');
-
-export const RECORD_IMPORT_URL = readEnvironmentVariable('RECORD_IMPORT_URL');
-export const RECORD_IMPORT_PROFILE = readEnvironmentVariable('RECORD_IMPORT_PROFILE');
-export const RECORD_IMPORT_USERNAME = readEnvironmentVariable('RECORD_IMPORT_USERNAME');
-export const RECORD_IMPORT_PASSWORD = readEnvironmentVariable('RECORD_IMPORT_PASSWORD');

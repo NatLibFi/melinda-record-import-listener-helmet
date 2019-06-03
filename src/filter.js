@@ -4,7 +4,7 @@
 *
 * Helmet record harvester for the Melinda record batch import system
 *
-* Copyright (C) 2018 University Of Helsinki (The National Library Of Finland)
+* Copyright (c) 2018-2019 University Of Helsinki (The National Library Of Finland)
 *
 * This file is part of melinda-record-import-harvester-helmet
 *
@@ -44,7 +44,18 @@ export default function (record, earliestCatalogTime) {
 	const leader = record.varFields.find(f => f.fieldTag === '_');
 	const materialType = record.materialType.code.trim();
 
-	checkLeader();
+	if (!checkLeader()) {
+		return false;
+	}
+
+	if (!record.varFields.find(f => f.marcTag === '008')) {
+		return false;
+	}
+
+	// Uncomment this to filter out records with 007 (For testing)
+	/* if (record.varFields.find(f => f.marcTag === '007')) {
+		return false;
+	} */
 
 	if (EXCLUDED_MATERIAL_TYPES.includes(materialType)) {
 		return false;
@@ -77,16 +88,24 @@ export default function (record, earliestCatalogTime) {
 			return false;
 		}
 
-		if (leader.content[7] === 'm') {
-			const f655 = record.varFields.find(f => f.marcTag === '655');
+		if (isMap()) {
+			return false;
+		}
 
-			if (f655) {
-				const a = f655.subfields.find(sf => sf.tag === 'a');
+		return true;
 
-				if (a && a.content === 'kartastot') {
-					return false;
+		function isMap() {
+			return leader.content[6] === 'a' && record.varFields.some(f => {
+				if (f.marcTag === '655') {
+					const a = f.subfields.find(sf => sf.tag === 'a');
+
+					if (a && a.content === 'kartastot') {
+						return true;
+					}
 				}
-			}
+
+				return false;
+			});
 		}
 	}
 
@@ -97,13 +116,13 @@ export default function (record, earliestCatalogTime) {
 		return f037.some(match037) || f710.some(match710);
 
 		function match037(f) {
-			const b = f.subfields.find(sf => sf.code === 'b' && /^OverDrive/.test(sf.value));
-			const n = f.subfields.find(sf => sf.code === 'n' && sf.value === 'http://www.overdrive.com');
+			const b = f.subfields.find(sf => sf.tag === 'b' && /^OverDrive/.test(sf.content));
+			const n = f.subfields.find(sf => sf.tag === 'n' && sf.content === 'http://www.overdrive.com');
 			return b && n;
 		}
 
 		function match710(f) {
-			return f.subfields.find(sf => sf.code === 'a' && /^OverDrive/.test(sf.value));
+			return f.subfields.find(sf => sf.tag === 'a' && /^overdrive/i.test(sf.content));
 		}
 	}
 }

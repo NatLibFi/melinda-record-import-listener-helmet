@@ -4,7 +4,7 @@
 *
 * Helmet record harvester for the Melinda record batch import system
 *
-* Copyright (C) 2018 University Of Helsinki (The National Library Of Finland)
+* Copyright (c) 2018-2019 University Of Helsinki (The National Library Of Finland)
 *
 * This file is part of melinda-record-import-harvester-helmet
 *
@@ -32,11 +32,13 @@ import moment from 'moment';
 import fetch from 'node-fetch';
 import HttpStatusCodes from 'http-status-codes';
 import nodeUtils from 'util';
-import {createLogger} from '@natlibfi/melinda-record-import-commons';
+import {Utils} from '@natlibfi/melinda-commons';
 import filterRecord from './filter';
 
+const {createLogger} = Utils;
+
 export default async function ({recordsCallback, apiURL, apiKey, apiSecret, recordsFetchLimit, pollInterval, pollChangeTimestamp, changeTimestampFile, earliestCatalogTime = moment(), onlyOnce = false}) {
-	const Logger = createLogger();
+	const logger = createLogger();
 
 	return process();
 
@@ -48,13 +50,15 @@ export default async function ({recordsCallback, apiURL, apiKey, apiSecret, reco
 
 		const timeBeforeFetching = moment();
 
-		Logger.log('debug', `Fetching records updated between ${pollChangeTime.format()} - ${timeBeforeFetching.format()}`);
+		logger.log('info', `Fetching records updated between ${pollChangeTime.format()} - ${timeBeforeFetching.format()}`);
 		await harvest({endTime: timeBeforeFetching});
 
 		if (!onlyOnce) {
-			Logger.log('debug', `Waiting ${pollInterval / 1000} seconds before polling again`);
+			logger.log('info', `Waiting ${pollInterval / 1000} seconds before polling again`);
+
 			await setTimeoutPromise(pollInterval);
 			writePollChangeTimestamp(timeBeforeFetching);
+
 			return process({authorizationToken, pollChangeTime: timeBeforeFetching.add(1, 'seconds')});
 		}
 
@@ -118,10 +122,10 @@ export default async function ({recordsCallback, apiURL, apiKey, apiSecret, reco
 
 			if (response.status === HttpStatusCodes.OK) {
 				const result = await response.json();
-				Logger.log('debug', `Retrieved ${result.entries.length} records`);
+				logger.log('debug', `Retrieved ${result.entries.length} records`);
 
 				const filtered = result.entries.filter(r => filterRecord(r, earliestCatalogTime));
-				Logger.log('debug', `${filtered.length}/${result.entries.length} records passed the filter`);
+				logger.log('debug', `${filtered.length}/${result.entries.length} records passed the filter`);
 
 				if (filtered.length > 0) {
 					await recordsCallback(filtered);
@@ -134,7 +138,7 @@ export default async function ({recordsCallback, apiURL, apiKey, apiSecret, reco
 					});
 				}
 			} else if (response.status === HttpStatusCodes.NOT_FOUND) {
-				Logger.log('debug', 'No records found');
+				logger.log('debug', 'No records found');
 			} else {
 				throw new Error(`Received HTTP ${response.status} ${response.statusText}`);
 			}

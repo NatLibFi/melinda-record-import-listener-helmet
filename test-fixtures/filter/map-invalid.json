@@ -1,0 +1,512 @@
+{
+  "result": false,
+  "record": {
+    "id": "2366622",
+    "materialType": {
+      "code": "1  "
+    },
+    "catalogDate": "2018-12-18",
+    "varFields": [
+      {
+        "fieldTag": "a",
+        "marcTag": "100",
+        "ind1": "1",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "Berry, Oliver,"
+          },
+          {
+            "tag": "e",
+            "content": "kirjoittaja"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "matkailukartat"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "655",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "kartastot"
+          },
+          {
+            "tag": "2",
+            "content": "slm/fin"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "655",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "matkaoppaat"
+          },
+          {
+            "tag": "2",
+            "content": "slm/fin"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "matkailukohteet"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "nähtävyydet"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "maat"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "valtiot"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "alueet"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "matkat"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "d",
+        "marcTag": "650",
+        "ind1": " ",
+        "ind2": "7",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "suunnittelu"
+          },
+          {
+            "tag": "2",
+            "content": "ysa"
+          }
+        ]
+      },
+      {
+        "fieldTag": "i",
+        "marcTag": "020",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "978-1-78701-696-5"
+          },
+          {
+            "tag": "q",
+            "content": "sidottu"
+          }
+        ]
+      },
+      {
+        "fieldTag": "j",
+        "marcTag": "095",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "461 "
+          },
+          {
+            "tag": "b",
+            "content": "404"
+          }
+        ]
+      },
+      {
+        "fieldTag": "k",
+        "marcTag": "091",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "24"
+          }
+        ]
+      },
+      {
+        "fieldTag": "n",
+        "marcTag": "546",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "englanti"
+          }
+        ]
+      },
+      {
+        "fieldTag": "n",
+        "marcTag": "574",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "Luett. ksiikaaho"
+          }
+        ]
+      },
+      {
+        "fieldTag": "n",
+        "marcTag": "599",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "KIRJA / BOK"
+          }
+        ]
+      },
+      {
+        "fieldTag": "o",
+        "marcTag": "001",
+        "ind1": " ",
+        "ind2": " ",
+        "content": "9781787016965"
+      },
+      {
+        "fieldTag": "p",
+        "marcTag": "264",
+        "ind1": " ",
+        "ind2": "1",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "Carlton :"
+          },
+          {
+            "tag": "b",
+            "content": "Lonely Planet Global Limited,"
+          },
+          {
+            "tag": "c",
+            "content": "2018"
+          }
+        ]
+      },
+      {
+        "fieldTag": "r",
+        "marcTag": "300",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "448 sivua :"
+          },
+          {
+            "tag": "b",
+            "content": "kuvitettu, karttoja ;"
+          },
+          {
+            "tag": "c",
+            "content": "36 cm"
+          }
+        ]
+      },
+      {
+        "fieldTag": "r",
+        "marcTag": "336",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "stillkuva"
+          },
+          {
+            "tag": "b",
+            "content": "sti"
+          },
+          {
+            "tag": "2",
+            "content": "rdacontent"
+          }
+        ]
+      },
+      {
+        "fieldTag": "r",
+        "marcTag": "336",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "teksti"
+          },
+          {
+            "tag": "b",
+            "content": "txt"
+          },
+          {
+            "tag": "2",
+            "content": "rdacontent"
+          }
+        ]
+      },
+      {
+        "fieldTag": "r",
+        "marcTag": "337",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "käytettävissä ilman laitetta"
+          },
+          {
+            "tag": "b",
+            "content": "n"
+          },
+          {
+            "tag": "2",
+            "content": "rdamedia"
+          }
+        ]
+      },
+      {
+        "fieldTag": "r",
+        "marcTag": "338",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "nide"
+          },
+          {
+            "tag": "b",
+            "content": "nc"
+          },
+          {
+            "tag": "2",
+            "content": "rdacarrier"
+          }
+        ]
+      },
+      {
+        "fieldTag": "s",
+        "marcTag": "830",
+        "ind1": " ",
+        "ind2": "0",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "Lonely Planet "
+          }
+        ]
+      },
+      {
+        "fieldTag": "t",
+        "marcTag": "245",
+        "ind1": "1",
+        "ind2": "4",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "The travel atlas :"
+          },
+          {
+            "tag": "b",
+            "content": "the ultimate atlas for globetrotters /"
+          },
+          {
+            "tag": "c",
+            "content": "chapter editors/writers: Oliver Berry [ja 7 muuta]"
+          }
+        ]
+      },
+      {
+        "fieldTag": "u",
+        "marcTag": "246",
+        "ind1": "3",
+        "ind2": "0",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "Ultimate atlas for globetrotters"
+          }
+        ]
+      },
+      {
+        "fieldTag": "y",
+        "marcTag": "003",
+        "ind1": " ",
+        "ind2": " ",
+        "content": "FI-BTJ"
+      },
+      {
+        "fieldTag": "y",
+        "marcTag": "005",
+        "ind1": " ",
+        "ind2": " ",
+        "content": "20180930024200.0"
+      },
+      {
+        "fieldTag": "y",
+        "marcTag": "008",
+        "ind1": " ",
+        "ind2": " ",
+        "content": "181001s2018    at     g|    |||||||eng|dnam4c "
+      },
+      {
+        "fieldTag": "y",
+        "marcTag": "040",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "FI-He"
+          },
+          {
+            "tag": "b",
+            "content": "fin"
+          },
+          {
+            "tag": "e",
+            "content": "rda"
+          }
+        ]
+      },
+      {
+        "fieldTag": "y",
+        "marcTag": "041",
+        "ind1": "0",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "eng"
+          }
+        ]
+      },
+      {
+        "fieldTag": "y",
+        "marcTag": "084",
+        "ind1": " ",
+        "ind2": " ",
+        "subfields": [
+          {
+            "tag": "a",
+            "content": "40.71"
+          },
+          {
+            "tag": "2",
+            "content": "ykl"
+          }
+        ]
+      },
+      {
+        "fieldTag": "_",
+        "content": "00000nam a22002174c 4500"
+      }
+    ]
+  }
+}

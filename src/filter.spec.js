@@ -26,29 +26,18 @@
 *
 */
 
-/* eslint-disable import/default */
+import fs from 'fs';
+import path from 'path';
+import {expect} from 'chai';
+import * as testContext from './filter';
 
-import {Harvester} from '@natlibfi/melinda-record-import-commons';
-import createHarvestCallback from './harvest';
+const FIXTURES_PATH = path.join(__dirname, '../test-fixtures/filter');
 
-const {startHarvester} = Harvester;
-
-import {
-	RECORDS_FETCH_LIMIT, POLL_INTERVAL, EARLIEST_CATALOG_TIME,
-	POLL_CHANGE_TIMESTAMP, CHANGE_TIMESTAMP_FILE,
-	HELMET_API_URL, HELMET_API_KEY, HELMET_API_SECRET
-} from './config';
-
-startHarvester(async ({recordsCallback}) => {
-	return createHarvestCallback({
-		recordsCallback,
-		apiURL: HELMET_API_URL,
-		apiKey: HELMET_API_KEY,
-		apiSecret: HELMET_API_SECRET,
-		pollChangeTimestamp: POLL_CHANGE_TIMESTAMP,
-		pollInterval: POLL_INTERVAL,
-		changeTimestampFile: CHANGE_TIMESTAMP_FILE,
-		recordsFetchLimit: RECORDS_FETCH_LIMIT,
-		earliestCatalogTime: EARLIEST_CATALOG_TIME
+describe('filter', () => {
+	fs.readdirSync(FIXTURES_PATH).forEach(file => {
+		it(file, async () => {
+			const fixture = JSON.parse(fs.readFileSync(path.join(FIXTURES_PATH, file), 'utf8'));
+			expect(testContext.default(fixture.record, fixture.earliestCatalogingTime)).to.equal(fixture.result);
+		});
 	});
 });

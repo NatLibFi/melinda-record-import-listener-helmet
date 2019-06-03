@@ -1,11 +1,12 @@
 FROM node:8-alpine
 CMD ["/usr/local/bin/node", "index.js"]
 WORKDIR /home/node
+ENV CHANGE_TIMESTAMP_FILE: /state/.poll-change-timestamp.json
 
 COPY --chown=node:node . build
 
 RUN apk add -U --no-cache --virtual .build-deps git sudo \
-  && sudo -u node rm -rf build/node_modules \
+  && sh -c 'mkdir /state && chown node:node /state' \
   && sudo -u node sh -c 'cd build && npm install && npm run build' \
   && sudo -u node cp -r build/package.json build/dist/* . \
   && sudo -u node npm install --prod \

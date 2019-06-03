@@ -4,7 +4,7 @@
 *
 * Helmet record harvester for the Melinda record batch import system
 *
-* Copyright (C) 2018 University Of Helsinki (The National Library Of Finland)
+* Copyright (c) 2018-2019 University Of Helsinki (The National Library Of Finland)
 *
 * This file is part of melinda-record-import-harvester-helmet
 *
@@ -29,14 +29,16 @@
 /* eslint-disable import/default */
 
 import startHarvesting from './harvest';
-import {HarvesterUtils} from '@natlibfi/melinda-record-import-commons';
+import {Harvester} from '@natlibfi/melinda-record-import-commons';
 import {
 	RECORDS_FETCH_LIMIT, POLL_INTERVAL, EARLIEST_CATALOG_TIME,
 	POLL_CHANGE_TIMESTAMP, CHANGE_TIMESTAMP_FILE,
 	HELMET_API_URL, HELMET_API_KEY, HELMET_API_SECRET
 } from './config';
 
-HarvesterUtils.cli('melinda-record-import-harvester-helmet', async callback => {
+const {runCLI} = Harvester;
+
+runCLI({name: 'melinda-record-import-harvester-helmet', callback: async callback => {
 	await startHarvesting({
 		apiURL: HELMET_API_URL,
 		apiKey: HELMET_API_KEY,
@@ -51,4 +53,4 @@ HarvesterUtils.cli('melinda-record-import-harvester-helmet', async callback => {
 			await callback(JSON.stringify(records, undefined, 2));
 		}
 	});
-});
+}});
