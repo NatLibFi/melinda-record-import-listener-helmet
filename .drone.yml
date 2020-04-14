@@ -22,8 +22,6 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-  when:
-    branch: [master, test]
 ---
 kind: secret
 name: docker_username
