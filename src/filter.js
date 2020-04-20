@@ -1,16 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-	value: true
-});
-exports.default = _default;
-
-var _moment = _interopRequireDefault(require('moment'));
-
-function _interopRequireDefault(obj) {
-	return obj && obj.__esModule ? obj : {default: obj};
-}
-
 /**
 *
 * @licstart  The following is the entire license notice for the JavaScript code in this file.
@@ -38,23 +25,40 @@ function _interopRequireDefault(obj) {
 * for the JavaScript code in this file.
 *
 */
-const EXCLUDED_MATERIAL_TYPES = ['d', 'e', 'q', '4', '6', 'j', '7', 'n', 'f'];
 
-function _default(record, earliestCatalogTime) {
-	let materialType = '';
+import moment from 'moment';
 
-	if (record.materialType === undefined) {
-		materialType = 'temporary';
-		return false;
-	}
+const EXCLUDED_MATERIAL_TYPES = [
+	'd',
+	'e',
+	'q',
+	'4',
+	'6',
+	'j',
+	'7',
+	'n',
+	'f'
+];
 
-	if (record.materialType && record.materialType.code) {
-		materialType = record.materialType.code.trim();
-	} else {
-		return false;
-	}
+export default function (record, earliestCatalogTime) {
 
 	const leader = record.varFields.find(f => f.fieldTag === '_');
+    let materialType = "";
+
+if (record.materialType === undefined) {
+  	materialType = "temporary";  
+  	return false;
+
+}  else {
+
+      if (record.materialType && record.materialType.code) {
+			materialType = record.materialType.code.trim();    
+      } else {
+        return false;
+      }
+}
+
+
 
 	if (!checkLeader()) {
 		return false;
@@ -62,10 +66,12 @@ function _default(record, earliestCatalogTime) {
 
 	if (!record.varFields.find(f => f.marcTag === '008')) {
 		return false;
-	} // Uncomment this to filter out records with 007 (For testing)
+	}
+
+	// Uncomment this to filter out records with 007 (For testing)
 	/* if (record.varFields.find(f => f.marcTag === '007')) {
-  	return false;
-  } */
+		return false;
+	} */
 
 	if (EXCLUDED_MATERIAL_TYPES.includes(materialType)) {
 		return false;
@@ -75,11 +81,11 @@ function _default(record, earliestCatalogTime) {
 		return false;
 	}
 
-	if (!record.catalogDate || !(0, _moment.default)(record.catalogDate).isValid()) {
+	if (!record.catalogDate || !moment(record.catalogDate).isValid()) {
 		return false;
 	}
 
-	if (earliestCatalogTime && (0, _moment.default)(record.catalogDate).isBefore(earliestCatalogTime)) {
+	if (earliestCatalogTime && moment(record.catalogDate).isBefore(earliestCatalogTime)) {
 		return false;
 	}
 
@@ -122,6 +128,7 @@ function _default(record, earliestCatalogTime) {
 	function isFromOverDrive() {
 		const f037 = record.varFields.filter(f => f.marcTag === '037');
 		const f710 = record.varFields.filter(f => f.marcTag === '710');
+
 		return f037.some(match037) || f710.some(match710);
 
 		function match037(f) {
@@ -135,4 +142,3 @@ function _default(record, earliestCatalogTime) {
 		}
 	}
 }
-// # sourceMappingURL=filter.js.map
