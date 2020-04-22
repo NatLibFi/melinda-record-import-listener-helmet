@@ -41,24 +41,22 @@ const EXCLUDED_MATERIAL_TYPES = [
 ];
 
 export default function (record, earliestCatalogTime) {
-
 	const leader = record.varFields.find(f => f.fieldTag === '_');
-    let materialType = "";
 
-if (record.materialType === undefined) {
-  	materialType = "temporary";  
-  	return false;
+	const materialType = function () {
+		if (record.materialType === undefined) {
+			return false;
+		}
 
-}  else {
+		if (record.materialType && record.materialType.code) {
+			let result = record.materialType.code.trim();
+			return result;
+		}
+	};
 
-      if (record.materialType && record.materialType.code) {
-			materialType = record.materialType.code.trim();    
-      } else {
-        return false;
-      }
-}
-
-
+	if (!materialType()) {
+		return false;
+	}
 
 	if (!checkLeader()) {
 		return false;
