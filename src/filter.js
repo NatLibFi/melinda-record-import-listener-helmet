@@ -43,9 +43,9 @@ const EXCLUDED_MATERIAL_TYPES = [
 export default function (record, earliestCatalogTime) {
 	const leader = record.varFields.find(f => f.fieldTag === '_');
 
-	const materialType = getMaterialType;
+	const materialType = getMaterialType();
 
-	if (!materialType()) {
+	if (!materialType) {
 		return false;
 	}
 
