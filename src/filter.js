@@ -43,16 +43,7 @@ const EXCLUDED_MATERIAL_TYPES = [
 export default function (record, earliestCatalogTime) {
 	const leader = record.varFields.find(f => f.fieldTag === '_');
 
-	const materialType = function () {
-		if (record.materialType === undefined) {
-			return false;
-		}
-
-		if (record.materialType && record.materialType.code) {
-			let result = record.materialType.code.trim();
-			return result;
-		}
-	};
+	const materialType = getMaterialType;
 
 	if (!materialType()) {
 		return false;
@@ -88,6 +79,12 @@ export default function (record, earliestCatalogTime) {
 	}
 
 	return true;
+
+	function getMaterialType() {
+		if (record.materialType && record.materialType.code) {
+			return record.materialType.code.trim();
+		}
+	}
 
 	function checkLeader() {
 		if (!leader) {
